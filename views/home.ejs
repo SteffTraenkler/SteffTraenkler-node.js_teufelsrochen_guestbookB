@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Teufelsrochen Guestbook</h1>
+
+    </header>
+    <main>
+        <form action="/newguest" method="post">
+            <label>
+                First name
+                <input type="text" name="fname">
+            </label>
+            <label>
+                Surname
+                <input type="text" name="name">
+            </label>
+            <label>
+                Email
+                <input type="email" name="email">
+            </label>
+            <label>
+                Your Message
+                <textarea name="posts" cols="30" rows="10"></textarea>
+            </label>
+            <input type="submit" value="Submit">
+        </form>
+
+        <section>
+            <% if(guests.length===0){ %>
+                <h1>No one has posted yet. Be the first to post!</h1>
+                <% } else{%>
+                    <% guests.forEach(guest=> {%>
+                        <div>
+                            <div>
+                                <h2>
+                                    <%- guest.fname %>
+                                </h2>
+                                <p><a href="mailto: <%- guest.email %>">
+                                        <%- guest.email%>
+                                    </a> schreibt: </p>
+                            </div>
+                            <p>
+                                <%- guest.posts %>
+                            </p>
+
+                        </div>
+                        <% });%>
+                            <% }%>
+        </section>
+    </main>
+
+</body>
+
+</html>
